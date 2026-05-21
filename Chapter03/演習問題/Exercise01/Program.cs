@@ -11,19 +11,24 @@ namespace Exercise01 {
             Console.WriteLine();
 
             // 3.1.2
+            Console.WriteLine("---3.1.2---");
             Exercise2(numbers);
             Console.WriteLine("-----");
+            Console.WriteLine();
 
             // 3.1.3
+            Console.WriteLine("---3.1.3.---");
             Exercise3(numbers);
             Console.WriteLine("-----");
+            Console.WriteLine();
 
             // 3.1.4
+            Console.WriteLine("---3.1.4---");
             Exercise4(numbers);
         }
 
         private static void Exercise1(List<int> numbers) {
-            var exists = numbers.Exists(T => T % 8 == 0 || T % 9 == 0);
+            var exists = numbers.Exists(n=> n % 8 == 0 || n % 9 == 0);
             if (exists) {
                 Console.WriteLine("存在しています");
             } else {
@@ -32,6 +37,7 @@ namespace Exercise01 {
         }
 
         private static void Exercise2(List<int> numbers) {
+            numbers.ForEach(n => Console.WriteLine(n / 2));
         }
 
         private static void Exercise3(List<int> numbers) {
