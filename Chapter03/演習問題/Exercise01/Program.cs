@@ -37,7 +37,7 @@ namespace Exercise01 {
         }
 
         private static void Exercise2(List<int> numbers) {
-            numbers.ForEach(n => Console.WriteLine(n / 2));
+            numbers.ForEach(n => Console.WriteLine(n / 2.0));
         }
 
         private static void Exercise3(List<int> numbers) {
@@ -48,6 +48,7 @@ namespace Exercise01 {
         }
 
         private static void Exercise4(List<int> numbers) {
+            numbers.Select(n => n * 2).ToList().ForEach(n => Console.WriteLine(n));            
         }
     }
 }
