@@ -3,7 +3,7 @@ namespace Exercise01 {
     internal class Program {
         static void Main(string[] args) {
             var numbers = new List<int> { 12, 87, 94, 14, 53, 20, 40, 35, 76, 91, 31, 17, 48 };
-
+            #region
             // 3.1.1
             Console.WriteLine("---3.1.1---");
             Exercise1(numbers);
@@ -26,6 +26,7 @@ namespace Exercise01 {
             Console.WriteLine("---3.1.4---");
             Exercise4(numbers);
         }
+        #endregion　各演習の呼び出し
 
         private static void Exercise1(List<int> numbers) {
             var exists = numbers.Exists(n=> n % 8 == 0 || n % 9 == 0);
