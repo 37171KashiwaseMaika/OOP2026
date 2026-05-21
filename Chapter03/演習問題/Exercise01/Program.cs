@@ -41,6 +41,10 @@ namespace Exercise01 {
         }
 
         private static void Exercise3(List<int> numbers) {
+            IEnumerable<int> query = numbers.Where(n => 50 <= n);
+            foreach (var n in query) {
+                Console.WriteLine(n);
+            }
         }
 
         private static void Exercise4(List<int> numbers) {
