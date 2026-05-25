@@ -34,17 +34,24 @@ namespace Exercise02 {
 
                 private static void Exercise2_2(List<string> cities) {
             //できたらGitのコメント「問題3.2.2完成」
-
+            var cnt = cities.Count(s => s.Contains('o') );
+            Console.WriteLine(cnt);
         }
 
         private static void Exercise2_3(List<string> cities) {
             //できたらGitのコメント「問題3.2.3完成」
-
+            var selected = cities.Where(s => s.Contains('o')).ToArray();
+            foreach (var name in selected) {
+                Console.WriteLine(name);
+            }
         }
 
         private static void Exercise2_4(List<string> cities) {
             //できたらGitのコメント「問題3.2.4完成」
-
+            var obj = cities.Where(s => s.StartsWith('B')).Select(s => new {s,s.Length});
+            foreach (var date in obj) {
+                Console.WriteLine(date.s + ":" + date.Length + "文字");
+            }
         }
     }
 }
