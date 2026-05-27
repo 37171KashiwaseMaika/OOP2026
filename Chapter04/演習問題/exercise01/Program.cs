@@ -24,7 +24,7 @@ namespace exercise01 {
             //var name = langs.FindAll(s => s.Contains('S'));          
             //    foreach (var s in name) {
             //        Console.WriteLine(s);
-
+                    
 
             //for文
             Console.WriteLine("\nfor文で出力");
@@ -59,6 +59,8 @@ namespace exercise01 {
         }
 
         private static void Exercise3(List<string> langs) {
+            var name = langs.Find(s => s.Length == 10)?? "unknow";
+            Console.WriteLine(name);
         }
     }
 }
