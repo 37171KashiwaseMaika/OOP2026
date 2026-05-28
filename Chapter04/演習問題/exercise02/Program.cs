@@ -54,7 +54,17 @@ namespace exercise02 {
 
         private static void Exercise3() {
             //switch式を使用(コード4.11)
-
+            var line = Console.ReadLine();
+            if (int.TryParse(line, out var num)) {
+                var text = num switch {
+                    < 0 => "num",
+                    < 100 => "num*2",
+                    < 500 => "num*3",
+                    _ => "num"
+                };
+            } else {
+                Console.WriteLine("入力値に誤りがあります");
+            }
         }
     }
 }
