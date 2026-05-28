@@ -13,23 +13,29 @@ namespace exercise02 {
         private static void NewMethod1() {
             //if-else文を使用（コード4.10）
             var line = Console.ReadLine();
-            int num = int.Parse(line);
-            if (num < 0) {
-                Console.WriteLine(num);
-            } else if(num<100){
-                Console.WriteLine(num * 2);
-            }else if (num < 500) {
-
-            }
+            if (int.TryParse(line,out var num)) {
+                if (num < 0) {
+                    Console.WriteLine(num);
+                } else if (num < 100) {
+                    Console.WriteLine(num * 2);
+                } else if (num < 500) {
+                    Console.WriteLine(num * 3);
+                } else {
+                    Console.WriteLine(num);
                 }
+            } else {
+                Console.WriteLine("入力値に誤りがあります");
+            }
+        }
 
         private static void Exercise2() {
-            //switch式を使用(コード4.11)
-
+            //switch文を使用(コード4.10)
+           
         }
 
         private static void Exercise3() {
-            
+            //switch式を使用(コード4.11)
+
         }
     }
 }
