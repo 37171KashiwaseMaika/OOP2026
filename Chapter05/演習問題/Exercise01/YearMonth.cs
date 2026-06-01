@@ -12,14 +12,21 @@ namespace Exercise01 {
 
         //コンストラクタ
         public YearMonth(int year, int month) {
-            this.Year = year;
-            this.Month = month;
+            Year = year;
+            Month = month;
         }
         //5.1.2(P116参照)
-        public bool Is21Century => (2001 <= Year && Year <= 2100);
+        public bool Is21Century => 2001 <= Year && Year <= 2100;
 
         //5.1.3
-        public YearMonth AddOneMonth() {
+        public YearMonth AddOneMonth(int year,int month) {
+            if (Month == 12) {
+                var y1 = new YearMonth(year + 1, 1);
+                return y1;
+            } else {
+                var y2 = new YearMonth(year, month + 1);
+                return y2;
+            }
 
         }
 
