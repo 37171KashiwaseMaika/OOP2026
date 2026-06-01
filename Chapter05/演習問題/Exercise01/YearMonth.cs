@@ -21,16 +21,14 @@ namespace Exercise01 {
         //5.1.3
         public YearMonth AddOneMonth(int year,int month) {
             if (Month == 12) {
-                var y1 = new YearMonth(year + 1, 1);
-                return y1;
+                return new YearMonth(year + 1, 1);                
             } else {
-                var y2 = new YearMonth(year, month + 1);
-                return y2;
+                return new YearMonth(year, month + 1);                
             }
 
         }
 
         //5.1.4
-        public override string ToString() =>
+        public override string ToString() => Year + "年" + Month + "月";
     }
 }
