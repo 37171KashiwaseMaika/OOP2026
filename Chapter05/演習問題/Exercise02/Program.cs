@@ -13,21 +13,25 @@ namespace Exercise02 {
 
             Console.WriteLine("5.2.2");
             Exercise2(ymCollection);
+            Console.WriteLine();
 
             Console.WriteLine("5.2.4");
             Exercise4(ymCollection);
-
+            Console.WriteLine();
 
             Console.WriteLine("5.2.5");
             Exercise5(ymCollection);
         }
 
         private static void Exercise2(YearMonth[] ymCollection) {
-            
+            foreach (var print in ymCollection) {
+                Console.WriteLine(print);
+                
+            }
         }
 
         private static void Exercise4(YearMonth[] ymCollection) {
-            
+
         }
 
         private static void Exercise5(YearMonth[] ymCollection) {
