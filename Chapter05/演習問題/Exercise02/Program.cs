@@ -22,16 +22,26 @@ namespace Exercise02 {
             Console.WriteLine("5.2.5");
             Exercise5(ymCollection);
         }
+        
 
         private static void Exercise2(YearMonth[] ymCollection) {
-            foreach (var print in ymCollection) {
-                Console.WriteLine(print);
-                
+            foreach (var ym in ymCollection) {
+                Console.WriteLine(ym);                
             }
         }
 
-        private static void Exercise4(YearMonth[] ymCollection) {
+        //5.2.3
+        private static YearMonth? FindFirst21C(YearMonth[] ymCollection) {
+            foreach (var ym in ymCollection) {               
+                if (ym.Is21Century) {
+                    return ym;                                    
+                }
+            }
+            return null;
+        }
 
+        private static void Exercise4(YearMonth[] ymCollection) {
+            
         }
 
         private static void Exercise5(YearMonth[] ymCollection) {
