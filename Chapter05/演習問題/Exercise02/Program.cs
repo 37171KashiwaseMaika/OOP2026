@@ -48,7 +48,7 @@ namespace Exercise02 {
                 Console.WriteLine(ym.Year+"年");
             }
             //出来たら、null合体演算子、null条件演算子を使って一行で記述
-            Console.WriteLine(FindFirst21C(ymCollection).ToString() ??"21世紀のデータはありません")
+            Console.WriteLine(FindFirst21C(ymCollection).ToString() ?? "21世紀のデータはありません");
         }
 
         private static void Exercise5(YearMonth[] ymCollection) {
