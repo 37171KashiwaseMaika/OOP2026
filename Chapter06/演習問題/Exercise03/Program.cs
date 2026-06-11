@@ -83,10 +83,12 @@ namespace Exercise03 {
             }
             for (char ch = 'a'; ch <= 'z'; ch++) {
                 Console.WriteLine($"{ch}:{array[ch - 'a']}");
-            }            
+            }
 
             //'a'から順にカウント           
-
+            for (char ch = 'a'; ch <= 'z'; ch++) {
+                Console.WriteLine($"{ch}:{str.Count(c=>c==ch)}");//ラムダ演算子
+            }
         }
     }
 }
