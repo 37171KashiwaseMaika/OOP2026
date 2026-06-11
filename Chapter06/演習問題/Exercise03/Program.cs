@@ -64,17 +64,15 @@ namespace Exercise03 {
             //全部小文字にする,空白を無くす
             var str = text.ToLower().Replace(" ","");
 
-            //var strarray = Enumerable.Range('a', 26).
-            //ToDictionary(num => ((char)num).ToString(), num => 0);
+            var alphDicCount = Enumerable.Range('a', 26).
+            ToDictionary(num => ((char)num), num => 0);
 
-            var dict = new SortedDictionary<char, int>();
+            //var dict = new SortedDictionary<char, int>();
             foreach (var c in str) {
-                if (dict.ContainsKey(c))
-                    dict[c]++;//登録済み
-                else
-                    dict[c] = 1;//未登録
+                if (alphDicCount.ContainsKey(c))
+                    alphDicCount[c]++;               
             }
-            foreach (var word in dict) {
+            foreach (var word in alphDicCount) {
                 Console.WriteLine(word.Key + ":" + word.Value);
             }
 
