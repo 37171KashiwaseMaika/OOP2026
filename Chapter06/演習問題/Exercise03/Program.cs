@@ -1,5 +1,7 @@
 ﻿
 using System.Runtime.InteropServices;
+using System.Security.Cryptography.X509Certificates;
+using System.Text;
 
 namespace Exercise03 {
     internal class Program {
@@ -44,7 +46,19 @@ namespace Exercise03 {
         }
 
         private static void Exercise3(string text) {
-            //やらなくてよい
+            var words = text.Split(' ');
+            var sb = new StringBuilder();
+
+            sb.Append(words[0]);
+            for (int i = 1; i < words.Length; i++) {
+                sb.Append(' ');
+                sb.Append(words[i]);
+            }
+            //foreach (var item in words.Skip(1)) {
+            //    sb.Append(' ');
+            //    sb.Append(item);                 
+            //}
+            Console.WriteLine(sb + ".");
         }
 
         private static void Exercise4(string text) {

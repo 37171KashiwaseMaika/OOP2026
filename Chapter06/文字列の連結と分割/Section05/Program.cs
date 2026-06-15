@@ -2,14 +2,12 @@
 
 namespace Section05 {
     internal class Program {
-        static void Main(string[] args) {           
-            var separator = ",";
-            var result = String.Join(separator, GetWords());
-        //    var sb = new StringBuilder();
-        //    foreach (var word in GetWords()) {
-        //        sb.Append(word);
-        //    }
-            Console.WriteLine(result);
+        static void Main(string[] args) {
+            var sb = new StringBuilder();
+            foreach (var word in GetWords()) {
+                sb.Append(word);
+            }
+            Console.WriteLine(sb);
         }
 
         private static IEnumerable<object> GetWords() {
