@@ -30,6 +30,8 @@ namespace Exercise01 {
         }
 
         private static void Exercise2(int[] numbers) {
+            //foreach(var n in numbers.TakeLast(2)){
+            //Console.WriteLine(n);}
             var ban = numbers.TakeLast(2);
             foreach (var item in ban) {
                 Console.WriteLine(item);
@@ -44,6 +46,8 @@ namespace Exercise01 {
         }
 
         private static void Exercise4(int[] numbers) {
+            //foreach(var n in numbers.OrderBy(x=>x)).Take(3){
+            //Console.WriteLine(n);}
             var sorted = numbers.OrderBy(n => n).Take(3);
             foreach (var item in sorted) {
                 Console.WriteLine(item);
