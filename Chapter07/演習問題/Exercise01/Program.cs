@@ -26,11 +26,14 @@ namespace Exercise01 {
 
         private static void Exercise1(int[] numbers) {
             var max = numbers.Max();
-            Console.WriteLine($"最大値:{max}");
+            Console.WriteLine(max);
         }
 
         private static void Exercise2(int[] numbers) {
-            
+            var ban = numbers.TakeLast(2);
+            foreach (var item in ban) {
+                Console.WriteLine(item);
+            }
         }
 
         private static void Exercise3(int[] numbers) {
