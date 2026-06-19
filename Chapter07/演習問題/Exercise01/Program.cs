@@ -37,7 +37,10 @@ namespace Exercise01 {
         }
 
         private static void Exercise3(int[] numbers) {
-
+            var plus = numbers.Select(n => n.ToString("000")).ToArray();
+            foreach (var item in plus) {
+                Console.WriteLine(item);
+            }
         }
 
         private static void Exercise4(int[] numbers) {
