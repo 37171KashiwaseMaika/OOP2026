@@ -13,6 +13,7 @@
             Console.WriteLine("平均金額:" + average);
             Console.WriteLine("合計ページ:" + pageSum);
             Console.WriteLine("高価な本:" + pageMax);
+            Console.WriteLine();
             Console.WriteLine("---500円以上の本---");
             foreach (var book in books.Where(x=>x.Price>=500)) {
                 Console.WriteLine(book.Title);
@@ -21,6 +22,7 @@
                 //Console.WriteLine(Title);
                 #endregion
             }
+            Console.WriteLine();
             //本のページが250以上の上位3出す
             Console.WriteLine("---250ページ以上の上位3冊---");
             foreach (var item in books.Where(x => x.Pages >= 250).Take(3)) {
