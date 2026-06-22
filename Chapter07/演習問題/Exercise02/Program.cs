@@ -36,9 +36,12 @@ namespace Exercise02 {
             #endregion
         }
 
-        private static void Exercise1(List<Book> books) {
+        private static void Exercise1(List<Book> books) {            
             var search = books.FirstOrDefault(s => s.Title == "ワンダフル・C#ライフ");
-            Console.WriteLine($"価格:{search.Price}" + $"ページ数:{search.Pages}");
+            //Console.WriteLine($"価格:{search.Price}" + $"ページ数:{search.Pages}");
+            if (search is not null) {
+                Console.WriteLine("{0} {1}", search.Price, search.Pages);
+            }
         }
 
         private static void Exercise2(List<Book> books) {
@@ -57,15 +60,15 @@ namespace Exercise02 {
         }
 
         private static void Exercise5(List<Book> books) {
-            
+            var min = books.Where(n => n.Price < 4000);
+            Console.WriteLine(min.Max(n => n.Pages));
         }
 
         private static void Exercise6(List<Book> books) {
             
-        }
+        }                  
 
         private static void Exercise7(List<Book> books) {
             
-        }
     }
 }
