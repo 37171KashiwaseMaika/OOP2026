@@ -2,8 +2,8 @@
     public class Student {
 
 
-        private string Name { get; set; } = string.Empty;       
-        private string Subject { get; set; } = string.Empty;       
-        private int Score { get; set; }
+        public string Name { get; set; } = string.Empty;       
+        public string Subject { get; set; } = string.Empty;       
+        public int Score { get; set; }
     }
 }
