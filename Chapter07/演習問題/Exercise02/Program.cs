@@ -73,6 +73,11 @@ namespace Exercise02 {
         }
 
         private static void Exercise7(List<Book> books) {
-            
+            var ins = books.Where(s => s.Title.Contains("C#"));
+            var ika = ins.Where(s => s.Pages <= 500);
+            foreach (var item in ika) {
+                Console.WriteLine(item.Title);
+            }
+        }
     }
 }
