@@ -1,0 +1,50 @@
+﻿namespace Section01 {
+    internal class Program {
+        static private Dictionary<string, string> prefOfficeDict = new Dictionary<string, string>();
+        
+        static void Main(string[] args) {
+            string? pref, prefCaptalLocation;
+
+
+            Console.WriteLine("県庁所在地の登録【入力終了:Ctrl + 'Z'】");
+            #region 入力、処理
+            while (true) {
+                //都道府県の入力
+                Console.Write("都道府県:");
+                pref=Console.ReadLine();
+
+                if (pref == null) break; //無限ループを抜ける(Ctrl+Z)
+                //県庁所在地の入力
+                Console.Write("県庁所在地:");
+                prefCaptalLocation=Console.ReadLine();
+                
+                //県庁所在地の登録処理
+                prefOfficeDict.Add(pref,prefCaptalLocation);
+            }
+            #endregion
+
+            #region メニュー
+            while (true) {
+                Console.WriteLine("**** メニュー ****\n1:一覧表示\n2:検索\n9:終了");                                               
+                var num=Console.ReadLine();
+                int nums = int.Parse(num);
+                if (nums == 1) {
+                    foreach (var item in prefOfficeDict) {
+                        Console.WriteLine($"{item.Key}の県庁所在地は{item.Value} です。");
+                    } 
+                }else if (nums == 2) {
+                    Console.Write("検索する県:");
+                    var key=Console.ReadLine();
+                    if (prefOfficeDict.ContainsKey(key)) {
+                        var look = prefOfficeDict[key];
+                        Console.WriteLine($"{key}の県庁所在地は{look} です。");
+                    }                    
+                } else {
+                    break;
+                }
+            }
+            #endregion
+
+        }
+    }
+}
