@@ -28,6 +28,7 @@
             label2 = new Label();
             label3 = new Label();
             groupBox1 = new GroupBox();
+            rbHonda = new RadioButton();
             rbOther = new RadioButton();
             rbImport = new RadioButton();
             rbSubaru = new RadioButton();
@@ -108,6 +109,7 @@
             // 
             // groupBox1
             // 
+            groupBox1.Controls.Add(rbHonda);
             groupBox1.Controls.Add(rbOther);
             groupBox1.Controls.Add(rbImport);
             groupBox1.Controls.Add(rbSubaru);
@@ -118,6 +120,17 @@
             groupBox1.Size = new Size(373, 50);
             groupBox1.TabIndex = 2;
             groupBox1.TabStop = false;
+            // 
+            // rbHonda
+            // 
+            rbHonda.AutoSize = true;
+            rbHonda.Location = new Point(117, 22);
+            rbHonda.Name = "rbHonda";
+            rbHonda.Size = new Size(53, 19);
+            rbHonda.TabIndex = 0;
+            rbHonda.TabStop = true;
+            rbHonda.Text = "ホンダ";
+            rbHonda.UseVisualStyleBackColor = true;
             // 
             // rbOther
             // 
@@ -133,7 +146,7 @@
             // rbImport
             // 
             rbImport.AutoSize = true;
-            rbImport.Location = new Point(229, 22);
+            rbImport.Location = new Point(239, 22);
             rbImport.Name = "rbImport";
             rbImport.Size = new Size(61, 19);
             rbImport.TabIndex = 0;
@@ -144,7 +157,7 @@
             // rbSubaru
             // 
             rbSubaru.AutoSize = true;
-            rbSubaru.Location = new Point(152, 22);
+            rbSubaru.Location = new Point(179, 22);
             rbSubaru.Name = "rbSubaru";
             rbSubaru.Size = new Size(54, 19);
             rbSubaru.TabIndex = 0;
@@ -155,7 +168,7 @@
             // rbNissan
             // 
             rbNissan.AutoSize = true;
-            rbNissan.Location = new Point(80, 22);
+            rbNissan.Location = new Point(62, 22);
             rbNissan.Name = "rbNissan";
             rbNissan.Size = new Size(49, 19);
             rbNissan.TabIndex = 0;
@@ -223,6 +236,8 @@
             // 
             // dgvRecords
             // 
+            dgvRecords.AllowUserToAddRows = false;
+            dgvRecords.AllowUserToDeleteRows = false;
             dgvRecords.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvRecords.Location = new Point(129, 442);
             dgvRecords.Name = "dgvRecords";
@@ -277,9 +292,10 @@
             // 
             // pbPicture
             // 
-            pbPicture.Location = new Point(567, 80);
+            pbPicture.BorderStyle = BorderStyle.FixedSingle;
+            pbPicture.Location = new Point(516, 95);
             pbPicture.Name = "pbPicture";
-            pbPicture.Size = new Size(258, 272);
+            pbPicture.Size = new Size(309, 224);
             pbPicture.SizeMode = PictureBoxSizeMode.StretchImage;
             pbPicture.TabIndex = 7;
             pbPicture.TabStop = false;
@@ -492,5 +508,6 @@
         private StatusStrip statusStrip1;
         private ToolStripStatusLabel tsslbMessage;
         private OpenFileDialog ofdPicFileOpen;
+        private RadioButton rbHonda;
     }
 }
