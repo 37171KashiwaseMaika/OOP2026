@@ -1,4 +1,5 @@
 using System.ComponentModel;
+using System.Windows.Forms;
 using static CarReportSystem.CarReport;
 
 namespace CarReportSystem {
@@ -83,7 +84,7 @@ namespace CarReportSystem {
         }
 
         private void SetRadioButtonMaker(MakerGroup targetMaker) {
-            switch (targetMaker) {               
+            switch (targetMaker) {
                 case MakerGroup.トヨタ:
                     rbToyota.Checked = true;
                     break;
@@ -117,6 +118,26 @@ namespace CarReportSystem {
             if (!cbCarName.Items.Contains(carName)) {
                 cbCarName.Items.Add(carName);
             }
+        }
+
+        private void Form1_Load(object sender, EventArgs e) {
+
+        }
+
+        private void btDeletePicture_Click(object sender, EventArgs e) {
+            pbPicture.Image = null;
+        }
+
+        private void btModifyRecord_Click(object sender, EventArgs e) {
+            //修正
+        }
+
+        //選択・削除
+        private void btDeleteRecord_Click(object sender, EventArgs e) {
+            int sel = dgvRecords.CurrentRow.Index;
+            listcarReports.RemoveAt(sel);
+
+            dgvRecords.Refresh();//データグリッドビューの更新
         }
     }
 }

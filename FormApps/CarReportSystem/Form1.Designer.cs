@@ -240,7 +240,9 @@
             dgvRecords.AllowUserToDeleteRows = false;
             dgvRecords.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvRecords.Location = new Point(129, 442);
+            dgvRecords.MultiSelect = false;
             dgvRecords.Name = "dgvRecords";
+            dgvRecords.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvRecords.Size = new Size(696, 220);
             dgvRecords.TabIndex = 5;
             dgvRecords.Click += dgvRecords_Click;
@@ -289,6 +291,7 @@
             btDeletePicture.TabIndex = 6;
             btDeletePicture.Text = "削除";
             btDeletePicture.UseVisualStyleBackColor = false;
+            btDeletePicture.Click += btDeletePicture_Click;
             // 
             // pbPicture
             // 
@@ -322,6 +325,7 @@
             btModifyRecord.TabIndex = 6;
             btModifyRecord.Text = "修正";
             btModifyRecord.UseVisualStyleBackColor = false;
+            btModifyRecord.Click += btModifyRecord_Click;
             // 
             // btDeleteRecord
             // 
@@ -333,6 +337,7 @@
             btDeleteRecord.TabIndex = 6;
             btDeleteRecord.Text = "削除";
             btDeleteRecord.UseVisualStyleBackColor = false;
+            btDeleteRecord.Click += btDeleteRecord_Click;
             // 
             // label7
             // 
@@ -414,6 +419,7 @@
             statusStrip1.Location = new Point(0, 652);
             statusStrip1.Name = "statusStrip1";
             statusStrip1.Size = new Size(920, 22);
+            statusStrip1.SizingGrip = false;
             statusStrip1.TabIndex = 10;
             statusStrip1.Text = "statusStrip1";
             // 
@@ -453,8 +459,11 @@
             Controls.Add(label6);
             Controls.Add(label1);
             Controls.Add(menuStrip1);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
             Name = "Form1";
             Text = "試乗レポート管理システム";
+            Load += Form1_Load;
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgvRecords).EndInit();
