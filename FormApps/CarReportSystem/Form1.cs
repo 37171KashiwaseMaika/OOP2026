@@ -34,10 +34,13 @@ namespace CarReportSystem {
             //入力履歴を登録
             SetCbAuthor(cbAuthor.Text);
             SetCbName(cbCarName.Text);
+
+            dgvRecords.CurrentRow.Selected = false;//未選択にする
             ImputItemsUpdate();//データグリッドビューを更新したら呼ぶメリット
 
 
-            ImputltemsAllClear();//入力項目の全クリ
+            ImputltemsAllClear();//入力項目の全クリア
+
         }
 
         private MakerGroup GetRadioButtonMaker() {
@@ -72,21 +75,22 @@ namespace CarReportSystem {
             cbCarName.Text = string.Empty;
             tbReport.Text = string.Empty;
             pbPicture.Image = null;
+            dgvRecords.CurrentRow.Selected = false;//未選択にする
         }
 
         private void dgvRecords_Click(object sender, EventArgs e) {
 
-            if ((dgvRecords.CurrentRow is null) || (!dgvRecords.CurrentRow.Selected))return;
-            
-            //一覧選択時の表示
-            dtpDate.Value = (DateTime)dgvRecords.CurrentRow.Cells["Date"].Value;
-            cbAuthor.Text = (string)dgvRecords.CurrentRow.Cells["Author"].Value;
-            SetRadioButtonMaker((MakerGroup)dgvRecords.CurrentRow.Cells["Maker"].Value);
-            cbCarName.Text = (string)dgvRecords.CurrentRow.Cells["CarName"].Value;
-            tbReport.Text = (string)dgvRecords.CurrentRow.Cells["Report"].Value;
-            pbPicture.Image = (Image)dgvRecords.CurrentRow.Cells["Picture"].Value;
+            //if ((dgvRecords.CurrentRow is null) || (!dgvRecords.CurrentRow.Selected)) return;
 
-            ImputItemsUpdate();
+            ////一覧選択時の表示
+            //dtpDate.Value = (DateTime)dgvRecords.CurrentRow.Cells["Date"].Value;
+            //cbAuthor.Text = (string)dgvRecords.CurrentRow.Cells["Author"].Value;
+            //SetRadioButtonMaker((MakerGroup)dgvRecords.CurrentRow.Cells["Maker"].Value);
+            //cbCarName.Text = (string)dgvRecords.CurrentRow.Cells["CarName"].Value;
+            //tbReport.Text = (string)dgvRecords.CurrentRow.Cells["Report"].Value;
+            //pbPicture.Image = (Image)dgvRecords.CurrentRow.Cells["Picture"].Value;
+
+            //ImputItemsUpdate();
         }
 
         private void SetRadioButtonMaker(MakerGroup targetMaker) {
@@ -140,11 +144,11 @@ namespace CarReportSystem {
         }
 
         //修正
-        private void btModifyRecord_Click(object sender, EventArgs e) {            
+        private void btModifyRecord_Click(object sender, EventArgs e) {
             if ((dgvRecords.CurrentRow is null) ||
                     (!dgvRecords.CurrentRow.Selected)) return;
 
-            int sel = dgvRecords.CurrentRow.Index;            
+            int sel = dgvRecords.CurrentRow.Index;
             listcarReports[sel].Date = dtpDate.Value;
             listcarReports[sel].Author = cbAuthor.Text;
             listcarReports[sel].Maker = GetRadioButtonMaker();
@@ -158,12 +162,28 @@ namespace CarReportSystem {
 
         //選択・削除
         private void btDeleteRecord_Click(object sender, EventArgs e) {
-            if ((dgvRecords.CurrentRow is null) || 
+            if ((dgvRecords.CurrentRow is null) ||
                     (!dgvRecords.CurrentRow.Selected)) return;
-            
+
             listcarReports.RemoveAt(dgvRecords.CurrentRow.Index);
-            
+            //ImputltemsAllClear();
             dgvRecords.Refresh();//データグリッドビューの更新
         }
-    }
+
+        private void dgvRecords_SelectionChanged(object sender, EventArgs e) {
+            if ((dgvRecords.CurrentRow is null) || (!dgvRecords.CurrentRow.Selected)) return;
+
+            //一覧選択時の表示
+            dtpDate.Value = (DateTime)dgvRecords.CurrentRow.Cells["Date"].Value;
+            cbAuthor.Text = (string)dgvRecords.CurrentRow.Cells["Author"].Value;
+            SetRadioButtonMaker((MakerGroup)dgvRecords.CurrentRow.Cells["Maker"].Value);
+            cbCarName.Text = (string)dgvRecords.CurrentRow.Cells["CarName"].Value;
+            tbReport.Text = (string)dgvRecords.CurrentRow.Cells["Report"].Value;
+            pbPicture.Image = (Image)dgvRecords.CurrentRow.Cells["Picture"].Value;
+
+            ImputItemsUpdate();
+        }
+
+        }
+  
 }
