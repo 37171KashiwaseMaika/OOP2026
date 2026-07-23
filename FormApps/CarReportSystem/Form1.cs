@@ -1,6 +1,7 @@
 using System.ComponentModel;
 using System.Windows.Forms;
 using static CarReportSystem.CarReport;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace CarReportSystem {
     public partial class Form1 : Form {
@@ -184,6 +185,20 @@ namespace CarReportSystem {
             ImputItemsUpdate();
         }
 
+        //終了
+        private void 終了ToolStripMenuItem_Click(object sender, EventArgs e) {
+            Application.Exit();
+            //this.Close();
         }
-  
+
+        //色設定
+        private void 色設定ToolStripMenuItem_Click(object sender, EventArgs e) {
+            cdColor = new ColorDialog();
+            if (cdColor.ShowDialog() == DialogResult.OK) {
+                Color selectedColor = cdColor.Color;
+                BackColor = selectedColor;
+            }
+        }
+    }
+
 }

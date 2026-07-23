@@ -62,6 +62,7 @@
             statusStrip1 = new StatusStrip();
             tsslbMessage = new ToolStripStatusLabel();
             ofdPicFileOpen = new OpenFileDialog();
+            cdColor = new ColorDialog();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvRecords).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pbPicture).BeginInit();
@@ -245,7 +246,6 @@
             dgvRecords.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvRecords.Size = new Size(696, 220);
             dgvRecords.TabIndex = 5;
-            
             dgvRecords.SelectionChanged += dgvRecords_SelectionChanged;
             dgvRecords.Click += dgvRecords_Click;
             // 
@@ -389,6 +389,7 @@
             色設定ToolStripMenuItem.Name = "色設定ToolStripMenuItem";
             色設定ToolStripMenuItem.Size = new Size(155, 22);
             色設定ToolStripMenuItem.Text = "色設定...";
+            色設定ToolStripMenuItem.Click += 色設定ToolStripMenuItem_Click;
             // 
             // toolStripSeparator2
             // 
@@ -401,6 +402,7 @@
             終了ToolStripMenuItem.ShortcutKeys = Keys.Alt | Keys.F4;
             終了ToolStripMenuItem.Size = new Size(155, 22);
             終了ToolStripMenuItem.Text = "終了(&X)";
+            終了ToolStripMenuItem.Click += 終了ToolStripMenuItem_Click;
             // 
             // helpHToolStripMenuItem
             // 
@@ -520,5 +522,6 @@
         private ToolStripStatusLabel tsslbMessage;
         private OpenFileDialog ofdPicFileOpen;
         private RadioButton rbHonda;
+        private ColorDialog cdColor;
     }
 }
