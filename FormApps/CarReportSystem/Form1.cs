@@ -193,10 +193,10 @@ namespace CarReportSystem {
 
         //êFê›íË
         private void êFê›íËToolStripMenuItem_Click(object sender, EventArgs e) {
-            cdColor = new ColorDialog();
+            //cdColor = new ColorDialog();
             if (cdColor.ShowDialog() == DialogResult.OK) {
-                Color selectedColor = cdColor.Color;
-                BackColor = selectedColor;
+                //Color selectedColor = cdColor.Color;
+                BackColor = cdColor.Color;
             }
         }
     }
