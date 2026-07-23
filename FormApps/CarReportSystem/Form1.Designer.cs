@@ -247,7 +247,6 @@
             dgvRecords.Size = new Size(696, 220);
             dgvRecords.TabIndex = 5;
             dgvRecords.SelectionChanged += dgvRecords_SelectionChanged;
-            dgvRecords.Click += dgvRecords_Click;
             // 
             // btNewInput
             // 
