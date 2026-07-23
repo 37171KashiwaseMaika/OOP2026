@@ -1,5 +1,7 @@
 using System.ComponentModel;
 using System.Windows.Forms;
+using System.Xml;
+using System.Xml.Serialization;
 using static CarReportSystem.CarReport;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
@@ -8,6 +10,8 @@ namespace CarReportSystem {
 
         //カーレポート管理用リスト
         BindingList<CarReport> listcarReports = new BindingList<CarReport>();
+        //設定クラスのオブジェクトを生成
+        Settings settings = new Settings();
 
         public Form1() {
             InitializeComponent();
@@ -76,11 +80,11 @@ namespace CarReportSystem {
             cbCarName.Text = string.Empty;
             tbReport.Text = string.Empty;
             pbPicture.Image = null;
-            
+
             dgvRecords.ClearSelection();//未選択にする
         }
 
-        
+
 
         private void SetRadioButtonMaker(MakerGroup targetMaker) {
             switch (targetMaker) {
@@ -144,7 +148,7 @@ namespace CarReportSystem {
                 return;
             }
 
-                int sel = dgvRecords.CurrentRow.Index;
+            int sel = dgvRecords.CurrentRow.Index;
             listcarReports[sel].Date = dtpDate.Value;
             listcarReports[sel].Author = cbAuthor.Text.Trim();
             listcarReports[sel].Maker = GetRadioButtonMaker();
@@ -197,6 +201,18 @@ namespace CarReportSystem {
                 //Color selectedColor = cdColor.Color;
                 BackColor = cdColor.Color;
             }
+        }
+
+        //フォームが閉じたら呼ばれるイベントハンドラ
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e) {
+            //設定ファイルへ色情報を保存する処理（シリアル化）
+            //P284以降を参考にする
+            using (var writer = XmlWriter.Create("setting.Xml")) {
+                var serializer = new XmlSerializer(settings.GetType());
+                serializer.Serialize(writer, settings);
+            }
+               
+            
         }
     }
 
