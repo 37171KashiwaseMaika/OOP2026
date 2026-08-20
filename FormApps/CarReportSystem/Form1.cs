@@ -124,7 +124,28 @@ namespace CarReportSystem {
         }
 
         private void Form1_Load(object sender, EventArgs e) {
+            //設定ファイルを読み込み背景色を設定する（逆シリアル化）
+            //P286以降を参考にする（ファイル名:setting.xml）
 
+            //ファイルが存在するか？
+            if (File.Exists("setting.xml")) {
+                try {
+                    using (var reader = XmlReader.Create("setting.xml")) {
+                        var serializer = new XmlSerializer(typeof(Settings));
+                        var settings = serializer.Deserialize(reader) as Settings;
+
+                        //[検索]　C# 整数からARGBに変換
+                        BackColor = Color.FromArgb(settings.MainFormBackColor);
+                    }
+
+                }
+                catch (Exception ex) {
+                    tsslbMessage.Text = "設定ファイル読み込みエラー";
+                    MessageBox.Show(ex.Message);//より具体的なエラーを出力
+                }
+            } else {
+                tsslbMessage.Text = "設定ファイルがありません";
+            }
         }
 
         private void btDeletePicture_Click(object sender, EventArgs e) {
@@ -200,20 +221,21 @@ namespace CarReportSystem {
             if (cdColor.ShowDialog() == DialogResult.OK) {
                 //Color selectedColor = cdColor.Color;
                 BackColor = cdColor.Color;
+
+                //変更されtライロの情報を保存
+                settings.MainFormBackColor = cdColor.Color.ToArgb();
             }
         }
 
+
         //フォームが閉じたら呼ばれるイベントハンドラ
-        private void Form1_FormClosing(object sender, FormClosingEventArgs e) {
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e) {
             //設定ファイルへ色情報を保存する処理（シリアル化）
             //P284以降を参考にする
             using (var writer = XmlWriter.Create("setting.Xml")) {
                 var serializer = new XmlSerializer(settings.GetType());
                 serializer.Serialize(writer, settings);
             }
-               
-            
         }
     }
-
 }
