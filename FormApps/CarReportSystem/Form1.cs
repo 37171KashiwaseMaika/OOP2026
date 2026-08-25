@@ -1,10 +1,8 @@
 using System.ComponentModel;
 using System.Runtime.Serialization.Formatters.Binary;
-using System.Windows.Forms;
 using System.Xml;
 using System.Xml.Serialization;
 using static CarReportSystem.CarReport;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace CarReportSystem {
     public partial class Form1 : Form {
