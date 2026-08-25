@@ -131,10 +131,14 @@ namespace CarReportSystem {
                 try {
                     using (var reader = XmlReader.Create("setting.xml")) {
                         var serializer = new XmlSerializer(typeof(Settings));
-                        settings = serializer.Deserialize(reader) as Settings;
+                        //settings = serializer.Deserialize(reader) as Settings;P109
+                        if (serializer.Deserialize(reader) is Settings loadedSettings) {
+                            settings = loadedSettings;
 
-                        //[ŒŸõ]@C# ®”‚©‚çARGB‚É•ÏŠ·
-                        BackColor = Color.FromArgb(settings.MainFormBackColor);
+                            //”wŒiFİ’è
+                            //[ŒŸõ]@C# ®”‚©‚çARGB‚É•ÏŠ·
+                            BackColor = Color.FromArgb(settings.MainFormBackColor);
+                        }
                     }
 
                 }
