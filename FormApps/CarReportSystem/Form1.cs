@@ -172,6 +172,12 @@ namespace CarReportSystem {
                 return;
             }
 
+            if (dgvRecords.CurrentRow?.DataBoundItem is not CarReport carReport) {
+                tsslbMessage.Text = "修正するレポートを選択してください";
+                return;
+            }
+            
+
             int sel = dgvRecords.CurrentRow.Index;
             listcarReports[sel].Date = dtpDate.Value;
             listcarReports[sel].Author = cbAuthor.Text.Trim();
@@ -192,9 +198,18 @@ namespace CarReportSystem {
             if ((dgvRecords.CurrentRow is null) ||
                     (!dgvRecords.CurrentRow.Selected)) return;
 
-            listcarReports.RemoveAt(dgvRecords.CurrentRow.Index);
+            //削除したいインデックスを指定してリストから削除
+            if(dgvRecords.CurrentRow?.DataBoundItem is not CarReport carReport) {
+                tsslbMessage.Text = "削除するレポートを選択してください";
+                return;
+            }
+            listcarReports.Remove(carReport);
+
+
             //ImputltemsAllClear();
             dgvRecords.Refresh();//データグリッドビューの更新
+
+            InputItemsUpdate();//データグリッドビューを更新したら呼ぶメソッド
         }
 
         private void dgvRecords_SelectionChanged(object sender, EventArgs e) {
