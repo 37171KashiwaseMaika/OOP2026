@@ -132,6 +132,7 @@ namespace CarReportSystem {
             //ファイルが存在するか？
             if (File.Exists("setting.xml")) {
                 try {
+
                     using (var reader = XmlReader.Create("setting.xml")) {
                         var serializer = new XmlSerializer(typeof(Settings));
                         //settings = serializer.Deserialize(reader) as Settings;P109
