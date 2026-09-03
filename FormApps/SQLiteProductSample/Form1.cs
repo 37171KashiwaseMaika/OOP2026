@@ -101,8 +101,8 @@ public partial class Form1 : Form
 
     private void btClear_Click(object sender, EventArgs e)
     {
-        ClearInput();
         dgvProducts.ClearSelection();
+        ClearInput();
         tsslMessage.Text = "入力欄をクリアしました。";
     }
 
