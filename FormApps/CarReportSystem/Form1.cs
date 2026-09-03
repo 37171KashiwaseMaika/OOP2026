@@ -13,7 +13,7 @@ namespace CarReportSystem {
 
         //設定クラスのオブジェクトを生成
         //Settings settings = Settings.Instance;
-        
+
 
 
         public Form1() {
@@ -130,16 +130,16 @@ namespace CarReportSystem {
             //設定ファイルを読み込み背景色を設定する（逆シリアル化）
 
             try {
-Settings.Instance.Load(); 
-            BackColor = Color.FromArgb(Settings.Instance.MainFormBackColor);
+                Settings.Instance.Load();
+                BackColor = Color.FromArgb(Settings.Instance.MainFormBackColor);
             }
             catch (Exception ex) {
                 tsslbMessage.Text = "設定ファイル読み込みエラー";
                 MessageBox.Show(ex.Message);//より具体的なエラーを出力
-                
+
             }
 
-            
+
 
 
             //P286以降を参考にする（ファイル名:setting.xml）
@@ -196,7 +196,7 @@ Settings.Instance.Load();
                 tsslbMessage.Text = "修正するレポートを選択してください";
                 return;
             }
-            
+
 
             int sel = dgvRecords.CurrentRow.Index;
             listcarReports[sel].Date = dtpDate.Value;
@@ -219,7 +219,7 @@ Settings.Instance.Load();
                     (!dgvRecords.CurrentRow.Selected)) return;
 
             //削除したいインデックスを指定してリストから削除
-            if(dgvRecords.CurrentRow?.DataBoundItem is not CarReport carReport) {
+            if (dgvRecords.CurrentRow?.DataBoundItem is not CarReport carReport) {
                 tsslbMessage.Text = "削除するレポートを選択してください";
                 return;
             }
@@ -343,5 +343,7 @@ Settings.Instance.Load();
                 }
             }
         }
+
+        
     }
 }
