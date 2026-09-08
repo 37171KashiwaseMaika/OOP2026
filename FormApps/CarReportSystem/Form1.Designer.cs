@@ -89,7 +89,7 @@
             dtpDate.Name = "dtpDate";
             dtpDate.Size = new Size(200, 39);
             dtpDate.TabIndex = 1;
-            //
+            // 
             // label2
             // 
             label2.AutoSize = true;
@@ -217,6 +217,7 @@
             cbCarName.Name = "cbCarName";
             cbCarName.Size = new Size(282, 40);
             cbCarName.TabIndex = 3;
+            
             // 
             // label5
             // 
