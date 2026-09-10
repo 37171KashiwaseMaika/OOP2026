@@ -1,3 +1,4 @@
+using SQLiteProductSample;
 using System.ComponentModel;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Windows.Forms.Design;
@@ -14,12 +15,36 @@ namespace CarReportSystem {
         //設定クラスのオブジェクトを生成
         //Settings settings = Settings.Instance;
 
-
+        // DataGridViewへ表示する商品の一覧
+        private readonly BindingList<CarReport> _carreport = new();
+        // DB操作を担当するRepository
+        private readonly CarReportRepository _repository = new();
 
         public Form1() {
             InitializeComponent();
             dgvRecords.DataSource = listcarReports;
+
+
+            //ProductsクラスのプロパティからDataGriDView列を自動生成する
+            dgvRecords.AutoGenerateColumns = true;
+            //DataGridViewの元データとしてBindingListを設定する
+            dgvRecords.DataSource = _carreport;
+            //起動直後にDBから商品一覧を読み込む
+            ReloadRecords();
+
+            //使用中のDBファイルの場所をステータスバーへ表示する
+            //tsslbMessage.Text = $"DB:{Database.FilePath}";
         }
+
+        private void ReloadRecords() {
+            _carreport.Clear();
+            foreach (var carReport in _repository.GetAll()) {
+                _repository.Add(carReport);
+            }
+            dgvRecords.ClearSelection();
+        }
+
+
         //追加ボタンイベントハンドラ
         private void btAddRecord_Click(object sender, EventArgs e) {
             tsslbMessage.Text = String.Empty;//メッセージ領域クリア
@@ -27,17 +52,36 @@ namespace CarReportSystem {
                 tsslbMessage.Text = "記録者、または車名が未入力です";
                 return;
             }
+                // if (!dgvRecords(out DateTime date, out string author, out MakerGroup maker, out string carname, out string report, out Image? picture))
+                //    return;
+
+                var carReport = new CarReport {
+                    Date = dtpDate.Value.Date,
+                    Author = cbAuthor.Text.Trim(),
+                    Maker = GetRadioButtonMaker(),
+                    CarName = cbCarName.Text.Trim(),
+                    Report = tbReport.Text,
+                    Picture = pbPicture.Image,
+                };
+                listcarReports.Add(carReport);
 
 
-            var carReport = new CarReport {
-                Date = dtpDate.Value.Date,
-                Author = cbAuthor.Text.Trim(),
-                Maker = GetRadioButtonMaker(),
-                CarName = cbCarName.Text.Trim(),
-                Report = tbReport.Text,
-                Picture = pbPicture.Image,
-            };
-            listcarReports.Add(carReport);
+                try {
+                    _repository.Add(carReport);
+                ReloadRecords();
+                ClearInput();
+
+                tsslbMessage.Text = "商品を登録しました。";
+                }
+                catch (Exception ex) {
+                    ShowError("登録エラー", ex);
+                }
+
+            
+
+
+            
+            
 
             //入力履歴を登録
             SetCbAuthor(cbAuthor.Text);
@@ -306,6 +350,11 @@ namespace CarReportSystem {
             }
         }
 
+        private void ClearInput() {
+            tbReport.Clear();
+        }
+
+
         private void 開くToolStripMenuItem_Click(object sender, EventArgs e) {
             reportOpenFile();
         }
@@ -343,7 +392,15 @@ namespace CarReportSystem {
                 }
             }
         }
+        private void ShowError(string title, Exception ex) {
+            tsslbMessage.Text = title;
+            MessageBox.Show(
+                ex.Message,
+                title,
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Error);
+        }
 
-       
+      
     }
 }

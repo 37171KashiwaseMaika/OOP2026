@@ -198,6 +198,7 @@
             cbAuthor.Name = "cbAuthor";
             cbAuthor.Size = new Size(282, 40);
             cbAuthor.TabIndex = 3;
+           
             // 
             // label4
             // 
@@ -217,7 +218,6 @@
             cbCarName.Name = "cbCarName";
             cbCarName.Size = new Size(282, 40);
             cbCarName.TabIndex = 3;
-            
             // 
             // label5
             // 

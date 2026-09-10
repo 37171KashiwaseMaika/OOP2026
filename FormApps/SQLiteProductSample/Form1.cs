@@ -27,9 +27,9 @@ public partial class Form1 : Form
     private void btAdd_Click(object sender, EventArgs e)
     {
         //入力値が不正なら処理を終了する
-        if (!TryGetInput(out string name, out int price))
+        
+if (!TryGetInput(out string name, out int price))
             return;
-
         try {
             _repository.Add(name, price);
             ReloadProducts();

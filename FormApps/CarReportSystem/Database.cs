@@ -31,18 +31,19 @@ namespace CarReportSystem {
             // IF NOT EXISTS により、既にテーブルがあってもエラーにならない
             command.CommandText =
                 """
-            CREATE TABLE IF NOT EXIST CarReports(
+            CREATE TABLE IF NOT EXISTS CarReports(
             Id INTEGER PRIMARY KEY AUTOINCREMENT,
             Date TEXT NOT NULL,
             Author TEXT BOT NULL,
             Maker INTEGER NOT NULL,
-            CarName TEXT NOT NNULL,
+            CarName TEXT NOT NULL,
             Report TEXT NOT NULL,
             Picture BLOB
+            );
             """;
 
             //結果行を返さないSQLを実行する
-            //command.ExecuteNonQuery();
+            command.ExecuteNonQuery();
         }
     }
 }

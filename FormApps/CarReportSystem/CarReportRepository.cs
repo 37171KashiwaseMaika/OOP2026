@@ -1,10 +1,8 @@
 ﻿using CarReportSystem;
 using Microsoft.Data.Sqlite;
-using System.Data;
-using System.Diagnostics;
 using System.Drawing.Imaging;
 using System.Globalization;
-using System.Xml.Linq;
+using static CarReportSystem.CarReport;
 
 namespace SQLiteProductSample;
 
@@ -14,7 +12,7 @@ public class CarReportRepository {
     // 全商品を取得する。Read（SELECT）に相当する
     public List<CarReport> GetAll() {
 
-        var products = new List<CarReport>();
+        var carReports = new List<CarReport>();
 
         using var connection = Database.GetConnection();
         connection.Open();
@@ -34,7 +32,7 @@ public class CarReportRepository {
         using var reader = command.ExecuteReader();
 
         while (reader.Read()) {
-            products.Add(new CarReport {
+            carReports.Add(new CarReport {
                 Id = reader.GetInt32(0),    // 0列目: Id
                 Date = DateTime.ParseExact(
                     reader.GetString(1),
@@ -49,14 +47,14 @@ public class CarReportRepository {
                 //Picture = (System.Drawing.Image)reader.GetValue(6)
             });
         }
-        return products;
+        return carReports;
 
     }
 
 
     //商品を1件追加する。Create(INSERT)に相当する
     //戻り値として自動採番されたIDを返す
-    public int Add(string name, int price) {
+    public int Add(CarReport report) {
         // 接続オブジェクトを生成する。
         using var connection = Database.GetConnection();
 
@@ -70,15 +68,16 @@ public class CarReportRepository {
         // IF NOT EXISTS により、既にテーブルがあってもエラーにならない
         command.CommandText =
             """
-            INSERT INTO Products (Name,Price)
-            VALUES ($name,$price); 
+            INSERT INTO CarReports (Date,Author,Maker,CarName,Report,Picture)
+            VALUES ($Date,$Author,$Maker,$CarName,$Report,$Picture); 
             
             SELECT last_insert_rowid();
 
             """;
 
-        command.Parameters.AddWithValue("$name", name);
-        command.Parameters.AddWithValue("$price", price);
+        SetCommandParameters(report,command);
+
+        //command.Parameters.AddWithValue("$picture", picture);
 
 
         //1つの値を返すSQLを実行する
@@ -89,6 +88,24 @@ public class CarReportRepository {
 
         //SQLiteのINTEFERはlongとして返るため、intへ変換する
         return Convert.ToInt32((long)result);
+    }
+
+    private void SetCommandParameters(CarReport report, SqliteCommand command) {
+        command.Parameters.AddWithValue("$date", report.Date.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture));
+        command.Parameters.AddWithValue("$author", report.Author);
+        command.Parameters.AddWithValue("$maker", report.Maker);
+        command.Parameters.AddWithValue("$carname", report.CarName);
+        command.Parameters.AddWithValue("$report", report.Report);
+
+        //image型の画像をSQLiteへ保存できるbyte配列に変換する
+        byte[]? pictureDate = ImageToBytes(report.Picture);
+        //$picture　パラメータをBLOB型として追加する
+        var pictureParameter = command.Parameters.Add("$picture", SqliteType.Blob);
+        if (pictureDate is not null) {
+            pictureParameter.Value = pictureDate;
+        } else {
+            pictureParameter.Value = DBNull.Value;
+        }
     }
 
     public void Update(CarReport product) {
@@ -117,12 +134,10 @@ public class CarReportRepository {
         command.Parameters.AddWithValue("$price", product.CarName);
         command.Parameters.AddWithValue("$price", product.Report);
         command.Parameters.AddWithValue("$price", product.Picture);
-        //command.Parameters.AddWithValue("$id", product.Id);
+        command.Parameters.AddWithValue("$id", product.Id);
 
 
-        //更新件数が0なら対象が存在しない
-        if (command.ExecuteNonQuery() == 0)
-            throw new InvalidOperationException("修正対象の商品が見つかりませんでした。");
+       
 
     }
 
@@ -137,6 +152,10 @@ public class CarReportRepository {
             WHERE Id = $id;
 
             """;
+
+        //更新件数が0なら対象が存在しない
+        if (command.ExecuteNonQuery() == 0)
+            throw new InvalidOperationException("修正対象の商品が見つかりませんでした。");
 
         command.Parameters.AddWithValue("$id", id);
         command.ExecuteNonQuery();
