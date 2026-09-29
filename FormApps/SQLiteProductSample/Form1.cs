@@ -2,15 +2,13 @@ using System.ComponentModel;
 
 namespace SQLiteProductSample;
 
-public partial class Form1 : Form
-{
+public partial class Form1 : Form {
     // DataGridViewへ表示する商品の一覧
     private readonly BindingList<Product> _products = new();
     // DB操作を担当するRepository
     private readonly ProductRepository _repository = new();
 
-    public Form1()
-    {
+    public Form1() {
         InitializeComponent();
 
         //ProductsクラスのプロパティからDataGriDView列を自動生成する
@@ -24,11 +22,10 @@ public partial class Form1 : Form
         tsslMessage.Text = $"DB:{Database.FilePath}";
     }
 
-    private void btAdd_Click(object sender, EventArgs e)
-    {
+    private void btAdd_Click(object sender, EventArgs e) {
         //入力値が不正なら処理を終了する
-        
-if (!TryGetInput(out string name, out int price))
+
+        if (!TryGetInput(out string name, out int price))
             return;
         try {
             _repository.Add(name, price);
@@ -42,10 +39,9 @@ if (!TryGetInput(out string name, out int price))
         }
     }
 
-    private void btUpdate_Click(object sender, EventArgs e)
-    {
+    private void btUpdate_Click(object sender, EventArgs e) {
         //選択行に紐づくProductを取得
-        if(dgvProducts.CurrentRow?.DataBoundItem is not Product selectedProduct) {
+        if (dgvProducts.CurrentRow?.DataBoundItem is not Product selectedProduct) {
             tsslMessage.Text = "修正する商品を選択してください。";
             return;
         }
@@ -69,15 +65,14 @@ if (!TryGetInput(out string name, out int price))
         }
     }
 
-    private void btDelete_Click(object sender, EventArgs e)
-    {
-        if(dgvProducts.CurrentRow?.DataBoundItem is not Product selectedProduct) {
+    private void btDelete_Click(object sender, EventArgs e) {
+        if (dgvProducts.CurrentRow?.DataBoundItem is not Product selectedProduct) {
             tsslMessage.Text = "削除する商品を選択してください。";
             return;
         }
 
         //ご削除防止の確認
-        if(MessageBox.Show(
+        if (MessageBox.Show(
             $"「{selectedProduct.Name}」を削除しますか？",
             "削除確認",
             MessageBoxButtons.YesNo,
@@ -99,15 +94,13 @@ if (!TryGetInput(out string name, out int price))
 
     }
 
-    private void btClear_Click(object sender, EventArgs e)
-    {
+    private void btClear_Click(object sender, EventArgs e) {
         dgvProducts.ClearSelection();
         ClearInput();
         tsslMessage.Text = "入力欄をクリアしました。";
     }
 
-    private void dgvProducts_SelectionChanged(object sender, EventArgs e)
-    {
+    private void dgvProducts_SelectionChanged(object sender, EventArgs e) {
         if (dgvProducts.CurrentRow?.DataBoundItem is not Product product)
             return;
 
@@ -116,8 +109,7 @@ if (!TryGetInput(out string name, out int price))
         tbPrice.Text = product.Price.ToString();
     }
 
-    private void ReloadProducts()
-    {
+    private void ReloadProducts() {
         _products.Clear();
         foreach (var product in _repository.GetAll()) {
             _products.Add(product);
@@ -125,20 +117,17 @@ if (!TryGetInput(out string name, out int price))
         dgvProducts.ClearSelection();
     }
 
-    private bool TryGetInput(out string name, out int price)
-    {
+    private bool TryGetInput(out string name, out int price) {
         name = tbName.Text.Trim();
 
-        if (string.IsNullOrWhiteSpace(name))
-        {
+        if (string.IsNullOrWhiteSpace(name)) {
             price = 0;
             tsslMessage.Text = "商品名を入力してください。";
             tbName.Focus();
             return false;
         }
 
-        if (!int.TryParse(tbPrice.Text, out price) || price < 0)
-        {
+        if (!int.TryParse(tbPrice.Text, out price) || price < 0) {
             tsslMessage.Text = "価格は0以上の整数で入力してください。";
             tbPrice.Focus();
             tbPrice.SelectAll();
@@ -148,16 +137,14 @@ if (!TryGetInput(out string name, out int price))
         return true;
     }
 
-    
-    private void ClearInput()
-    {
+
+    private void ClearInput() {
         tbName.Clear();
         tbPrice.Clear();
         tbName.Focus();
     }
 
-    private void ShowError(string title, Exception ex)
-    {
+    private void ShowError(string title, Exception ex) {
         tsslMessage.Text = title;
         MessageBox.Show(
             ex.Message,
@@ -165,4 +152,6 @@ if (!TryGetInput(out string name, out int price))
             MessageBoxButtons.OK,
             MessageBoxIcon.Error);
     }
+
+    
 }

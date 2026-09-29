@@ -69,7 +69,7 @@ public class CarReportRepository {
         command.CommandText =
             """
             INSERT INTO CarReports (Date,Author,Maker,CarName,Report,Picture)
-            VALUES ($Date,$Author,$Maker,$CarName,$Report,$Picture); 
+            VALUES ($date,$author,$maker,$carname,$report,$picture); 
             
             SELECT last_insert_rowid();
 
@@ -150,15 +150,13 @@ public class CarReportRepository {
              """
             DELETE FROM CarReports
             WHERE Id = $id;
-
             """;
 
+        command.Parameters.AddWithValue("$id", id);
         //更新件数が0なら対象が存在しない
         if (command.ExecuteNonQuery() == 0)
             throw new InvalidOperationException("修正対象の商品が見つかりませんでした。");
 
-        command.Parameters.AddWithValue("$id", id);
-        command.ExecuteNonQuery();
     }
     // ImageをSQLiteへ保存できるbyte[]へ変換する
     private static byte[]? ImageToBytes(Image? image) {
@@ -177,4 +175,6 @@ public class CarReportRepository {
         // MemoryStream破棄後も利用できるようBitmapとしてコピーする。
         return new Bitmap(image);
     }
+
+   
 }

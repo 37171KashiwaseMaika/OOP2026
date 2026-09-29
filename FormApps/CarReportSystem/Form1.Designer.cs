@@ -198,7 +198,6 @@
             cbAuthor.Name = "cbAuthor";
             cbAuthor.Size = new Size(282, 40);
             cbAuthor.TabIndex = 3;
-           
             // 
             // label4
             // 
@@ -249,6 +248,8 @@
             dgvRecords.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvRecords.Size = new Size(696, 220);
             dgvRecords.TabIndex = 5;
+            
+
             dgvRecords.SelectionChanged += dgvRecords_SelectionChanged;
             // 
             // btNewInput
@@ -374,14 +375,14 @@
             開くToolStripMenuItem.Name = "開くToolStripMenuItem";
             開くToolStripMenuItem.Size = new Size(155, 22);
             開くToolStripMenuItem.Text = "開く...";
-            開くToolStripMenuItem.Click += 開くToolStripMenuItem_Click;
+            
             // 
             // 保存ToolStripMenuItem
             // 
             保存ToolStripMenuItem.Name = "保存ToolStripMenuItem";
             保存ToolStripMenuItem.Size = new Size(155, 22);
             保存ToolStripMenuItem.Text = "保存...";
-            保存ToolStripMenuItem.Click += 保存ToolStripMenuItem_Click;
+            
             // 
             // toolStripSeparator1
             // 
