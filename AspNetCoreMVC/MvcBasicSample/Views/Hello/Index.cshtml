@@ -11,15 +11,23 @@
 
 <h1>商品一覧</h1>  @*画面内の見出し*@
 
+@* Tag Helperで移動先を指定しBootstrapで見た目を整える *@
+<a asp-controller="Hello" asp-action="Index" 
+class="btn btn-primary mb-3">商品一覧を表示</a>　@*タグヘルパー:aはリンク(Helloの画面に移動)*@
+
 @*件数が0なら説明だけを表示する*@
 @if (Model.Count == 0) { //@必要
     <p>商品はありません</p>
 } else {
     <p>@Model.Count 件の商品があります</p>
-    <ul>
+    <div class="row">
         @foreach (var product in Model) {
-            <li>@product.Name @product.Price 円</li>
+            @* 狭い画面では1列で中程度以上の画面では2列にする *@ 
+                <div class="col-12 col-md-6 mb-3">
+                <h2 class="h5">@product.Name</h2>
+                <p>@product.Price 円</p>
+            </div>
         }
-    </ul>
+    </div>
 }
 
