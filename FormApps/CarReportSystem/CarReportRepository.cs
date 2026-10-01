@@ -136,7 +136,6 @@ public class CarReportRepository {
         command.Parameters.AddWithValue("$price", product.Picture);
         command.Parameters.AddWithValue("$id", product.Id);
 
-
         command.ExecuteNonQuery();
 
     }
