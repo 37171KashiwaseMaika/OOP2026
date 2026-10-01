@@ -137,7 +137,7 @@ public class CarReportRepository {
         command.Parameters.AddWithValue("$id", product.Id);
 
 
-       
+        command.ExecuteNonQuery();
 
     }
 
