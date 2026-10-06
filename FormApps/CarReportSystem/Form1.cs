@@ -253,6 +253,7 @@ namespace CarReportSystem {
 
             dgvRecords.Refresh();//データグリッドビューの更新
             tsslbMessage.Text = "レポートを修正しました";
+            _repository.Update()
         }
 
         //選択・削除
