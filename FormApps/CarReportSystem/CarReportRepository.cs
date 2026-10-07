@@ -129,16 +129,16 @@ public class CarReportRepository {
 
             """;
 
-        /*command.Parameters.AddWithValue("$name", product.Date);
+        command.Parameters.AddWithValue("$name", product.Date);
         command.Parameters.AddWithValue("$price", product.Author);
         command.Parameters.AddWithValue("$price", product.Maker);
         command.Parameters.AddWithValue("$price", product.CarName);
         command.Parameters.AddWithValue("$price", product.Report);
         command.Parameters.AddWithValue("$price", product.Picture);
-        command.Parameters.AddWithValue("$id", product.Id);*/
+        command.Parameters.AddWithValue("$id", product.Id);
 
-        SetCommandParameters(CarReport.);
-        command.ExecuteNonQuery();
+        SetCommandParameters(product,command);
+        
 
     }
 

@@ -229,7 +229,7 @@ namespace CarReportSystem {
                 return;
             }
 
-            if (String.IsNullOrWhiteSpace(cbAuthor.Text) || String.IsNullOrWhiteSpace(cbCarName.Text)) {
+            if (string.IsNullOrWhiteSpace(cbAuthor.Text) || string.IsNullOrWhiteSpace(cbCarName.Text)) {
                 tsslbMessage.Text = "記録者、または車名が未入力です";
                 return;
             }
@@ -241,7 +241,7 @@ namespace CarReportSystem {
 
 
             int sel = dgvRecords.CurrentRow.Index;
-            _carreports[sel].Date = dtpDate.Value;
+            _carreports[sel].Date = dtpDate.Value.Date;
             _carreports[sel].Author = cbAuthor.Text.Trim();
             _carreports[sel].Maker = GetRadioButtonMaker();
             _carreports[sel].CarName = cbCarName.Text.Trim();
@@ -251,9 +251,10 @@ namespace CarReportSystem {
             SetCbAuthor(cbAuthor.Text.Trim());
             SetCbCarName(cbCarName.Text.Trim());
 
+            _repository.Update(carReport);
             dgvRecords.Refresh();//データグリッドビューの更新
             tsslbMessage.Text = "レポートを修正しました";
-            _repository.Update(carReport);
+            
         }
 
         //選択・削除
