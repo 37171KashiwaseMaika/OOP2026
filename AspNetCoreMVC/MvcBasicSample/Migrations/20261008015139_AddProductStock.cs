@@ -17,7 +17,7 @@ namespace MvcBasicSample.Migrations
                 nullable: false,
                 defaultValue: 0);
         }
-
+         
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
