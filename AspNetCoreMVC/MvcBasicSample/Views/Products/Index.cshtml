@@ -10,11 +10,12 @@
 <h1>商品一覧</h1>
 @* 件数が0なら説明だけを表示する *@ 
     @foreach (var product in Model) {
-        <li>@product.Name @product.Price 円</li>
+        <li>@product.Name @product.Price 円
     @if (product.Stock == 0) {
         <span class="text-danger fw-bold">売り切れ</span>
     } else {
         <span>在庫 @product.Stock</span>
     }
-    
+        @product.Description
+    </li>
 }
