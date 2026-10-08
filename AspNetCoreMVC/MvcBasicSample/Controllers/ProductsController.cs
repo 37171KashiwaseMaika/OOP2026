@@ -17,7 +17,7 @@ namespace MvcBasicSample.Controllers;
     public async Task<IActionResult> Index() {
 
         //Idの昇順で取得し結果をList<Products>する
-        var products = await _db.Products.OrderBy(product => product.Price).Where(product => product.Price >= 500).ToListAsync();
+        var products = await _db.Products.OrderBy(product => product.Price).ToListAsync();
 
         //商品一覧をViewへ渡す
         return View(products);
