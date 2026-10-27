@@ -17,15 +17,7 @@ public class FileProgramProcessor : TextProcessor {
     }
 
     protected override void Execute(string line) {
-        if (string.IsNullOrEmpty(_tan))
-            return;
-
-        int index = 0;
-        
-        while ((index = line.IndexOf(_tan, index)) >= 0) { 
-            _count++;
-            index += _tan.Length;
-        }
+        _count += line.Split(_tan).Length - 1;
     }
 
     protected override void Terminate() =>
