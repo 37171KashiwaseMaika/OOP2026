@@ -10,13 +10,10 @@ namespace Exercise03 {
 
         public void Initialize(string fname) => _count = 0;
 
-        public void Execute(string line) {
+        public bool Execute(string line) {
             _count++;
-            if (_count <= 20) {
                 Console.WriteLine(line);
-                
-            }
-            return;
+            return _count <20;
         }
 
         public void Terminate() {

@@ -15,7 +15,10 @@ internal class TextFileProcessor {
         _service.Initialize(fileName);
         var lines = File.ReadLines(fileName);
         foreach (var line in lines) {
-            _service.Execute(line);
+            bool ret = _service.Execute(line);
+            if (!ret) {
+                break;
+            }
         }
         _service.Terminate();
     }
