@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Exercise03 {
     public interface ITextFileService {
-        bool Initialize(string fname);
+        void Initialize(string fname);
         bool Execute(string line);
         void Terminate();
     }
