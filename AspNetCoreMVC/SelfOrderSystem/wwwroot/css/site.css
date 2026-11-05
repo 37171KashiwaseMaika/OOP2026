@@ -1,22 +1,139 @@
-html {
-  font-size: 14px;
+﻿/* ===== DREAMY LAVENDER × PINK ===== */
+
+:root {
+    --brand-color: #d6a2ff;
+    --page-bg: #b98add;
 }
 
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
-
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
-}
-
-html {
-  position: relative;
-  min-height: 100%;
-}
+/* ===== BACKGROUND ===== */
 
 body {
-  margin-bottom: 60px;
+    background: radial-gradient( ellipse at 20% 20%, rgba(255, 174, 230, 0.55), transparent 70% ), radial-gradient( ellipse at 80% 75%, rgba(190, 135, 255, 0.5), transparent 70% ), linear-gradient( 135deg, #583477, #8051a5, #9b65b8, #75458f ) !important;
+    background-attachment: fixed;
+    color: #fff !important;
+    font-family: "Segoe UI", sans-serif;
+}
+
+/* ===== HEADINGS ===== */
+
+h1 {
+    color: #fff !important;
+    font-size: clamp(3rem, 7vw, 5rem);
+    font-weight: 900;
+    letter-spacing: 4px;
+    text-align: center;
+    text-shadow: 0 0 10px #ffb5ed, 0 0 25px #e6a0ff, 0 0 45px #c58aff;
+    padding: 35px 10px;
+}
+
+h2 {
+    color: #ffd2f5 !important;
+    font-size: 2.2rem;
+    font-weight: 800;
+    text-shadow: 0 0 15px #e8aaff;
+    border-left: 5px solid #ffafe5;
+    padding-left: 15px;
+}
+
+/* ===== CARDS ===== */
+
+.card {
+    background: linear-gradient( 145deg, rgba(180, 125, 215, 0.85), rgba(125, 75, 165, 0.9) ) !important;
+    color: white !important;
+    border: 1px solid #edc0ff !important;
+    border-radius: 23px !important;
+    box-shadow: 0 0 18px rgba(231, 170, 255, 0.35), 0 0 35px rgba(255, 160, 220, 0.2), inset 0 0 20px rgba(255, 220, 255, 0.12);
+    padding: 25px;
+    transition: 0.3s ease;
+}
+
+    .card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 0 25px #e9aaff, 0 0 45px rgba(255, 160, 220, 0.45);
+    }
+
+/* ===== BUTTONS ===== */
+
+.btn-success {
+    background: linear-gradient( 100deg, #ff9cdb, #d69aff, #b98aff ) !important;
+    border: 1px solid #ffd1f2 !important;
+    color: white !important;
+    border-radius: 50px !important;
+    padding: 13px 35px !important;
+    font-size: 1.1rem;
+    font-weight: 800;
+    letter-spacing: 2px;
+    box-shadow: 0 0 15px #efaaff, 0 0 30px rgba(255, 150, 220, 0.4);
+    transition: 0.3s ease;
+}
+
+    .btn-success:hover {
+        transform: scale(1.08);
+        box-shadow: 0 0 25px #ffafe5, 0 0 45px #d6a2ff;
+        filter: brightness(1.15);
+    }
+
+/* ===== INPUT FORMS ===== */
+
+.form-control {
+    background: rgba(85, 48, 115, 0.75) !important;
+    color: white !important;
+    border: 1px solid #e5b0ff !important;
+    border-radius: 14px !important;
+    padding: 12px;
+    box-shadow: 0 0 12px rgba(225, 160, 255, 0.25);
+}
+
+    .form-control::placeholder {
+        color: #f2c9f5 !important;
+    }
+
+    .form-control:focus {
+        background: rgba(110, 65, 145, 0.9) !important;
+        border-color: #ffb4e9 !important;
+        box-shadow: 0 0 15px #e5a5ff !important;
+    }
+
+/* ===== LINKS ===== */
+
+a {
+    color: #ffd0f1 !important;
+    text-decoration: none;
+    transition: 0.2s;
+}
+
+    a:hover {
+        color: white !important;
+        text-shadow: 0 0 10px #ffafe5, 0 0 20px #d6a2ff;
+    }
+
+/* ===== NAVIGATION ===== */
+
+.navbar {
+    background: rgba(105, 65, 140, 0.65) !important;
+    border-bottom: 1px solid rgba(255, 190, 240, 0.6);
+    box-shadow: 0 5px 25px rgba(255, 170, 230, 0.25);
+    backdrop-filter: blur(18px);
+}
+
+/* ===== TEXT SELECTION ===== */
+
+::selection {
+    background: #e4a2ff;
+    color: white;
+}
+
+/* ===== SCROLLBAR ===== */
+
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-track {
+    background: #654080;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient( #ffb5e8, #dfa2ff, #b98aff );
+    border-radius: 20px;
 }
