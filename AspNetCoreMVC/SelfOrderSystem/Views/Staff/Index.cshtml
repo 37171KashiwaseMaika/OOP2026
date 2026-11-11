@@ -22,6 +22,7 @@
                     <th>商品と数量</th>
                     <th>合計</th>
                     <th>状態</th>
+                    <th>操作</th> @* 状態を変更するための列 *@ 
                 </tr>
             </thead>
             <tbody>
@@ -40,6 +41,21 @@
                         @* 注文した時点の単価で合計を計算 *@ 
                                     <td>@order.Items.Sum(i => i.UnitPrice * i.Quantity).ToString("N0") 円</td>
                         <td>@order.Status.ToJapanese()</td>
+                        <td>
+                            @* 提供済み以外は次の操作ボタンを表示 *@ 
+        @if (order.Status != OrderStatus.Served) {
+                                <form asp-controller="Staff" asp-action="Advance"
+                                      method="post">
+                                    @* 更新したい注文IDを送信 *@ 
+            <input type="hidden" name="id" value="@order.Id" />
+                                    <button type="submit" class="btn btn-primary btn-sm">
+                                        @order.Status.NextActionLabel()
+                                    </button>
+                                </form>
+                            } else {
+                                <span class="text-muted">完了</span>
+                            }
+                        </td>
                     </tr>
                 }
             </tbody>
