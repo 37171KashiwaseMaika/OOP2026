@@ -145,3 +145,25 @@
         </div>
     }
 </div>
+
+@section Scripts {
+    @* LibMan で追加したSignalRのJavaScript *@ 
+    <script src="~/js/signalr/dist/browser/signalr.min.js"></script>
+    <script>
+
+        // Hubとの接続を作る
+        const staffConnection = new signalR.HubConnectionBuilder()
+                                                .withUrl("/staffOrdersHub")
+                                                .withAutomaticReconnect()
+                                                .build();
+        // 通知を受けたら最新の注文一覧を読み直す
+        staffConnection.on("OrdersChanged", () => {
+        window.location.reload();
+        });
+        // 再接続後も表示内容を更新する
+        staffConnection.onreconnected(() => window.location.reload());
+        staffConnection.start().catch(error => {
+        console.error("店舗 SignalR 接続エラー", error);
+        });
+    </script>
+}
