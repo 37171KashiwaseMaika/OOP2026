@@ -130,3 +130,11 @@ h5 {
         transform: translateY(0);
     }
 }
+
+/*PCではカートをスクロールに追従させる*/
+@media(min-width:992px){
+    .so-cart-sidebar{
+        position:sticky;
+        top:90px;
+    }
+}
