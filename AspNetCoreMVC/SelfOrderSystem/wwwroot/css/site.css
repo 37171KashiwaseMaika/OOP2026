@@ -1,3 +1,4 @@
+
 html {
     font-size: 14px;
     position: relative;
@@ -12,9 +13,10 @@ html {
 
 body {
     margin-bottom: 60px;
-    background: #faf8f5;
-    color: #5f554d;
-    font-family: "Yu Gothic", sans-serif;
+    background: #090909;
+    color: #f0ece3;
+    font-family: "Yu Gothic", "Yu Mincho", sans-serif;
+    letter-spacing: .06em;
 }
 
 /* フォーカス */
@@ -23,22 +25,24 @@ body {
 .btn-link.nav-link:focus,
 .form-control:focus,
 .form-check-input:focus {
-    box-shadow: 0 0 0 .25rem rgba(214, 174, 126, .3);
+    box-shadow: 0 0 12px rgba(212, 175, 55, .4);
 }
 
 /* 商品カード */
 .card {
-    border: none;
-    border-radius: 24px;
+    border: 1px solid #9c8139;
+    border-radius: 8px;
     overflow: hidden;
-    background: #ffffff;
-    box-shadow: 0 8px 30px rgba(0,0,0,.06);
-    transition: all .3s ease;
+    background: #181818;
+    color: #f0ece3;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, .7), inset 0 1px 1px rgba(255, 255, 255, .08);
+    transition: all .35s ease;
 }
 
     .card:hover {
-        transform: translateY(-8px);
-        box-shadow: 0 20px 40px rgba(0,0,0,.12);
+        transform: translateY(-6px);
+        border-color: #e5c65c;
+        box-shadow: 0 0 18px rgba(212, 175, 55, .3), 0 12px 30px rgba(0, 0, 0, .8), inset 0 1px 2px rgba(255, 255, 255, .15);
     }
 
 /* 商品写真 */
@@ -47,13 +51,16 @@ body {
     width: 100%;
     height: 220px;
     object-fit: cover;
-    border-radius: 18px;
-    background: #f0eee9;
+    border-radius: 5px;
+    background: #222;
+    border: 1px solid #705b2b;
     transition: all .4s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, .6);
 }
 
     .so-product-photo:hover {
-        transform: scale(1.05);
+        transform: scale(1.04);
+        box-shadow: 0 0 18px rgba(212, 175, 55, .35);
     }
 
 /* 写真なし */
@@ -62,45 +69,77 @@ body {
     align-items: center;
     justify-content: center;
     height: 220px;
-    color: #8f8175;
+    color: #d4af37;
     font-size: 1rem;
-    background: linear-gradient( 135deg, #f7eee7, #f2e3d4 );
-    border-radius: 18px;
+    background: #171717;
+    border: 1px solid #9c8139;
+    border-radius: 5px;
+    box-shadow: inset 0 0 20px rgba(212, 175, 55, .08);
 }
 
 /* ボタン */
 .btn-primary {
-    background: #d6ae7e;
-    border: none;
-    border-radius: 30px;
-    padding: 10px 24px;
+    background: #c9a43c;
+    border: 1px solid #f0d477;
+    border-radius: 5px;
+    padding: 11px 26px;
+    color: #100d05;
+    font-weight: 700;
+    letter-spacing: .12em;
     transition: .3s;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, .5), inset 0 1px 2px rgba(255, 255, 255, .45);
 }
 
     .btn-primary:hover {
-        background: #c89961;
+        background: #e5c45b;
+        border-color: #fff0a0;
+        color: #000;
         transform: translateY(-2px);
+        box-shadow: 0 0 18px rgba(212, 175, 55, .55), inset 0 1px 3px rgba(255, 255, 255, .6);
     }
 
 /* 入力欄 */
 .form-control {
-    border-radius: 14px;
-    border: 1px solid #e8ddd2;
+    border-radius: 5px;
+    border: 1px solid #806a35;
+    background: #151515;
+    color: #f5f0e5;
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, .6);
 }
 
     .form-control:focus {
-        border-color: #d6ae7e;
+        border-color: #e5c65c;
+        background: #1c1c1c;
+        color: #fff;
+    }
+
+    .form-control::placeholder {
+        color: #928875;
     }
 
 /* テーブル */
 .table {
-    background: white;
-    border-radius: 20px;
+    background: #181818;
+    color: #eee8dc;
+    border: 1px solid #806a35;
+    border-radius: 8px;
     overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, .5);
 }
 
     .table thead {
-        background: #f8f1ea;
+        background: #292315;
+        color: #f0d477;
+    }
+
+    .table th {
+        font-weight: 700;
+        border-bottom: 2px solid #c9a43c;
+    }
+
+    .table td {
+        color: #e8e3d9;
+        border-color: #39342a;
     }
 
 /* タイトル */
@@ -109,11 +148,67 @@ h2,
 h3,
 h4,
 h5 {
-    color: #4f443c;
+    color: #e5c65b;
     font-weight: 700;
+    letter-spacing: .12em;
+    text-shadow: 0 1px 5px rgba(212, 175, 55, .25);
 }
 
-/* ふわっと表示 */
+/* 見出し */
+h2 {
+    border-bottom: 1px solid #c9a43c;
+    padding-bottom: 12px;
+    box-shadow: 0 2px 5px rgba(212, 175, 55, .08);
+}
+
+/* バッジ */
+.badge {
+    background: #c9a43c;
+    color: #100d05;
+    border: 1px solid #f0d477;
+    border-radius: 3px;
+    padding: 6px 12px;
+    font-weight: 700;
+    box-shadow: inset 0 1px 2px rgba(255, 255, 255, .4);
+}
+
+/* リンク */
+a {
+    color: #e5c65b;
+    text-decoration: none;
+    transition: .25s;
+}
+
+    a:hover {
+        color: #fff0a0;
+        text-shadow: 0 0 8px rgba(212, 175, 55, .5);
+    }
+
+/* 商品価格 */
+.price {
+    color: #f0d477;
+    font-weight: 700;
+    text-shadow: 0 0 8px rgba(212, 175, 55, .25);
+}
+
+/* カート */
+@media (min-width: 992px) {
+    .so-cart-sidebar {
+        position: sticky;
+        top: 90px;
+    }
+}
+
+.so-cart-sidebar {
+    background: #181818;
+    border: 1px solid #c9a43c;
+    border-radius: 8px;
+    padding: 22px;
+    color: #eee8dc;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, .7), inset 0 1px 2px rgba(255, 255, 255, .08);
+}
+
+/* アニメーション */
 .card,
 .so-product-photo {
     animation: fadeUp .7s ease;
@@ -131,10 +226,17 @@ h5 {
     }
 }
 
-/*PCではカートをスクロールに追従させる*/
-@media(min-width:992px){
-    .so-cart-sidebar{
-        position:sticky;
-        top:90px;
+/* スマホ */
+@media (max-width: 767px) {
+    .card {
+        border-radius: 6px;
+    }
+
+    .so-product-photo {
+        height: 180px;
+    }
+
+    .btn-primary {
+        width: 100%;
     }
 }
