@@ -14,7 +14,7 @@ public class OrderService : IOrderService {
     private readonly ILogger<OrderService> _logger; // ログ
 
     //コンストラクタ
-    public OrderService(AppDbContext db,IHubContext<StaffOrdersHub> hubContext,
+    public OrderService(AppDbContext db, IHubContext<StaffOrdersHub> hubContext,
     ILogger<OrderService> logger) // DIからDbContextを受け取る 
    {
         _db = db; // 受け取ったものを保持 
@@ -86,12 +86,13 @@ public class OrderService : IOrderService {
 
         try {
             //店舗画面へ更新の合図を送る
-            await _hubContext.Clients.All.SendAsync("OrdersChanged");
+            await _hubContext.Clients.Group("staff")
+                .SendAsync("OrdersChanged");
         }
-        catch(Exception ex) {
+        catch (Exception ex) {
             //通知失敗でも保存済みの注文は成功として扱う
             _logger.LogWarning(ex, "注文一覧への通知に失敗");
         }
         return result;                    // 成功結果を返す 
     }
-} 
+}
